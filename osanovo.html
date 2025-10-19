@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Село Осаново - Святой источник Казанской иконы Божией Матери</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5530;
+            --secondary-color: #388e3c;
+            --accent-color: #ff6b35;
+            --text-color: #2d3748;
+            --light-bg: #f7fafc;
+            --card-bg: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3a28 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .nav-breadcrumb {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .breadcrumb-item a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .breadcrumb-item.active {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(44, 85, 48, 0.9), rgba(56, 142, 60, 0.8)), url('https://images.unsplash.com/photo-1602052579102-2dcc8b997eec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-img-top {
+            border-radius: 15px 15px 0 0;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .card-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            padding: 2rem;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -40px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -40px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(56, 142, 60, 0.4);
+        }
+        
+        .miracle-card {
+            background: linear-gradient(135deg, #fff3e0, #ffecb3);
+            border-left: 4px solid #ff9800;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .back-to-map {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 1rem;
+            }
+            
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-content::before {
+                left: -40px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header class="header">
+        <div class="header-content">
+            <h1>Село Осаново</h1>
+            <p>Святой источник Казанской иконы Божией Матери</p>
+        </div>
+        
+        <!-- Навигация -->
+        <nav class="nav-breadcrumb">
+            <div class="main-container">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Главная</a></li>
+                        <li class="breadcrumb-item active">Село Осаново</li>
+                    </ol>
+                </nav>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <div class="main-container">
+        <!-- Герой секция -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title">Чудотворный источник с 300-летней историей</h2>
+                <p class="hero-subtitle">Место паломничества и духовного утешения</p>
+            </div>
+        </section>
+
+        <!-- О селе -->
+        <section class="section">
+            <h2 class="section-title">О селе Осаново</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <img src="https://avatars.mds.yandex.net/i?id=e1fcad2d7d6331998e472ab16f2678b59f91fdc6-16874194-images-thumbs&n=13" class="card-img-top" alt="Святой источник в Осаново">
+                        <div class="card-body">
+                            <h3 class="card-title">Историческая справка</h3>
+                            <p>Село Осаново расположено в живописной местности, окруженной горами, из которых в изобилии текут источники с чистой и здоровой водой.</p>
+                            <p>По писцовым книгам второй половины XVI века здесь существовала деревня Осаново, что свидетельствует о древней истории этого места.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <img src="https://avatars.mds.yandex.net/i?id=95ab5c3473bd78db223e1461dd0abd797aa0fb91-5366304-images-thumbs&n=13" class="card-img-top" alt="Часовня в Осаново">
+                        <div class="card-body">
+                            <h3 class="card-title">Географическое положение</h3>
+                            <p>Село находится в 80 верстах от Тулы и в 30 верстах от Венева, на юго-восток от последнего.</p>
+                            <p>Местность отличается особой природной красотой и духовной атмосферой, привлекающей паломников со всей России.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Достопримечательности -->
+        <section class="section">
+            <h2 class="section-title">Достопримечательности</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Святой источник</h3>
+                            <ul class="feature-list">
+                                <li>
+                                    <div class="feature-icon">💧</div>
+                                    <div>Целебная родниковая вода</div>
+                                </li>
+                                <li>
+                                    <div class="feature-icon">⛪</div>
+                                    <div>Явление лика Богородицы</div>
+                                </li>
+                                <li>
+                                    <div class="feature-icon">🔄</div>
+                                    <div>Более 300 лет истории</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Часовня</h3>
+                            <ul class="feature-list">
+                                <li>
+                                    <div class="feature-icon">🏛️</div>
+                                    <div>Восстановлена в 2006 году</div>
+                                </li>
+                                <li>
+                                    <div class="feature-icon">🎨</div>
+                                    <div>Фрески на библейские сюжеты</div>
+                                </li>
+                                <li>
+                                    <div class="feature-icon">🙏</div>
+                                    <div>Место для молитвы</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Купель</h3>
+                            <ul class="feature-list">
+                                <li>
+                                    <div class="feature-icon">🛁</div>
+                                    <div>Омовение в святых водах</div>
+                                </li>
+                                <li>
+                                    <div class="feature-icon">❄️</div>
+                                    <div>Постоянная температура +4°C</div>
+                                </li>
+                                <li>
+                                    <div class="feature-icon">🌊</div>
+                                    <div>Мощные потоки воды</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Чудесные явления -->
+        <section class="section">
+            <h2 class="section-title">Чудесные явления</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card miracle-card">
+                        <div class="card-body">
+                            <h3 class="card-title">Явление Казанской иконы Божией Матери</h3>
+                            <p>По преданию, верующим неоднократно являлся лик Казанской Божией Матери в отражении родниковой воды. Это чудесное явление наблюдали не единожды, и весть о нем быстро разнеслась по городам и весям.</p>
+                            <p class="mb-0">До наших дней дошли рассказы о том, что изображение православной святыни появлялось не только в воде, но и складывалось из клубов пара в зимний период.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- История -->
+        <section class="section">
+            <h2 class="section-title">Историческая хроника</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>XVII век</h4>
+                        <p>Первые упоминания об Осановском источнике. Явление лика Казанской Божией Матери</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>XIX век</h4>
+                        <p>Воздвигнута кирпичная часовня над источником. Место становится центром паломничества</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>1960-е годы</h4>
+                        <p>Разрушение часовни в ходе антирелигиозной кампании. Чудесное сохранение источника</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>1995 год</h4>
+                        <p>Восстановление часовни. Первый молебен собрал около 300 человек</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>2004 год</h4>
+                        <p>Пожар и уничтожение часовны. Начало работ по восстановлению</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>2006 год</h4>
+                        <p>Освящение восстановленной часовни архимандритом Лавром</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Традиции паломничества -->
+        <section class="section">
+            <h2 class="section-title">Традиции паломничества</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Как проходит посещение источника</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="feature-list">
+                                        <li>
+                                            <div class="feature-icon">📅</div>
+                                            <div>21 июля и 4 ноября - основные праздники</div>
+                                        </li>
+                                        <li>
+                                            <div class="feature-icon">💒</div>
+                                            <div>Крестный ход от церкви к источнику</div>
+                                        </li>
+                                        <li>
+                                            <div class="feature-icon💧</div>
+                                            <div>Набор святой воды</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="feature-list">
+                                        <li>
+                                            <div class="feature-icon">🛁</div>
+                                            <div>Омовение в купели</div>
+                                        </li>
+                                        <li>
+                                            <div class="feature-icon">🌊</div>
+                                            <div>Троекратное прохождение под струей</div>
+                                        </li>
+                                        <li>
+                                            <div class="feature-icon">❄️</div>
+                                            <div>Особое почитание на Крещение</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Чудесные свойства -->
+        <section class="section">
+            <h2 class="section-title">Чудесные свойства источника</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Целебная вода</h3>
+                            <p>Вода из Осановского источника обладает уникальными свойствами. Многие паломники свидетельствуют о исцелениях от различных недугов после употребления этой воды и омовения в источнике.</p>
+                            <p>Постоянная температура воды +4°C сохраняется круглый год.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title">Духовное значение</h3>
+                            <p>По преданиям, троекратное прохождение под мощной струей ледяной осановской воды "смывает все грехи" и дарует здоровье на весь следующий год.</p>
+                            <p>Особой силой обладает вода, набранная в дни празднования Казанской иконы Божией Матери.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Кнопка возврата -->
+        <div class="back-to-map">
+            <a href="index.html" class="btn btn-primary btn-lg">
+                ← Вернуться на карту
+            </a>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="main-container">
+            <!-- <div class="row align-items-center">
+                <div class="col-md-6 text-md-start mb-3 mb-md-0">
+                    <h5>Интерактивная экскурсия</h5>
+                    <p class="mb-0">Проект "Неизведанные уголки моей малой Родины"</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-1">Выполнили: Костякова Дарья, Сапелкина Варвара</p>
+                    <p class="mb-0">Руководитель: Рапшина Ирина Александровна</p>
+                </div>
+            </div> -->
+            <div class="text-center mt-4 pt-3 border-top border-light border-opacity-25">
+                <p class="mb-0">© 2025 XVII межмуниципальные краеведческие чтения «История, настоящее и будущее Тульского края»</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
